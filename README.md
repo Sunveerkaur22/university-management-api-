@@ -1,46 +1,68 @@
+# University Management REST API
 
-# University Management API
+A backend application built with **Python, FastAPI and MySQL** to manage university students, instructors, courses and enrollments.
 
-A RESTful backend application for managing university students, instructors, courses, and enrollments.
+## Features
 
-## Technologies
+- Student management: create, retrieve, list and delete students.
+- Instructor management: create and list instructors.
+- Course management: create and retrieve courses.
+- Enrollment management: register students in courses and retrieve enrollment records.
+- Department-based student filtering.
+- Retrieve students enrolled in a particular course.
+- Retrieve courses taken by a student.
+- Retrieve courses taught by an instructor.
+- Input validation and duplicate-record handling.
+- Relational database design using primary and foreign keys.
+- Interactive API documentation through Swagger UI.
+
+## Tech Stack
+
 - Python
 - FastAPI
 - MySQL
-- SQLAlchemy
+- SQLAlchemy ORM
 - Pydantic
+- PyMySQL
 - Uvicorn
 
-## Features
-- Student CRUD operations
-- Instructor management
-- Course management
-- Student course enrollment
-- Department-based student filtering
-- Retrieve students enrolled in a course
-- Retrieve courses taken by a student
-- Retrieve courses taught by an instructor
-- Duplicate record validation
-- Relational database with primary and foreign keys
-- Interactive API documentation with Swagger UI
+## Database Design
 
-## Database Structure
+The application uses four relational tables:
 
-- Students
-- Instructors
-- Courses
-- Enrollments
+| Table | Purpose |
+|---|---|
+| Students | Stores student information |
+| Instructors | Stores instructor information |
+| Courses | Stores courses and assigned instructors |
+| Enrollments | Connects students with courses |
 
-## Installation
+## Project Structure
 
-Clone the repository:
-
-```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
-cd university-management-API
+```text
+university-management-api/
+├── app/
+│   ├── __init__.py
+│   ├── database.py
+│   ├── main.py
+│   ├── models.py
+│   └── schemas.py
+├── .gitignore
+├── README.md
+├── requirements.txt
+└── seed.py
 ```
 
-Create a virtual environment:
+## Setup and Installation
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Sunveerkaur22/university-management-api.git
+cd university-management-api
+```
+
+### 2. Create a virtual environment
 
 ```bash
 python -m venv .venv
@@ -52,13 +74,17 @@ Activate it on Windows:
 .venv\Scripts\Activate.ps1
 ```
 
-Install dependencies:
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Configure your `.env` file:
+### 4. Configure MySQL
+
+Create a MySQL database named `university_db`.
+
+Create a `.env` file in the project root:
 
 ```env
 DB_USER=root
@@ -68,22 +94,28 @@ DB_PORT=3306
 DB_NAME=university_db
 ```
 
-Create the database and tables using the provided SQL setup instructions, then populate sample data:
+The application creates its tables using SQLAlchemy when it starts.
+
+### 5. Populate sample data
 
 ```bash
 python seed.py
 ```
 
-Start the application:
+### 6. Start the API
 
 ```bash
 python -m uvicorn app.main:app --reload
 ```
 
-Open API documentation:
+## API Documentation
 
-http://127.0.0.1:8000/docs
+Once the application is running, visit:
 
-## Project Purpose
+**Swagger UI:** http://127.0.0.1:8000/docs
 
-This project demonstrates backend development, REST API design, relational database management, SQLAlchemy ORM, and data validation.
+**ReDoc:** http://127.0.0.1:8000/redoc
+
+## Learning Outcomes
+
+This project demonstrates practical experience with REST API development, Python backend programming, relational database management, SQLAlchemy ORM, request validation, CRUD operations and database relationships.
